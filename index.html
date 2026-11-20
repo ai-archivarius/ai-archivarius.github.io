@@ -197,6 +197,15 @@ mark{background:var(--hl);color:inherit;border-radius:3px;padding:0 1px}
 .toast button{color:#0a84ff;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script>
+document.addEventListener('error', function(e){
+  var el = e.target;
+  if (!el || el.tagName !== 'IMG') return;
+  var src = el.getAttribute('src') || '', name = src.split('/').pop(), step = +(el.dataset.fb || 0);
+  var tries = ['img/' + name, name];
+  if (step < tries.length) { el.dataset.fb = step + 1; el.src = tries[step]; }
+}, true);
+</script>
 </head>
 <body>
 <div class="app">
